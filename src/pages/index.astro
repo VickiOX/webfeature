@@ -14,9 +14,9 @@ import tyndfilm from "../assets/images/tynd-film.jpg";
 import "../styles/tobii.min.css";
 ---
 <MainLayout title="Titel">
-	<article class="">
+	<article class="x-data">
 		<section class="max-w-xl mx-auto mt-32 prose" id="titel">
-			<h2 class="text-9xl">Uperfekt er perfekt</h2>
+			<h2 class="text-9xl font text-indigo-500">Uperfekt er perfekt</h2>
 		</section>
 		<section class="max-w-4xl mx-auto mt-32" id="herovideo">
 			<video width="1280" height="960" autoplay muted loop>
@@ -26,27 +26,44 @@ import "../styles/tobii.min.css";
 		<section class="max-w-xl mx-auto mt-32 prose" id="manchet">
 			<p class="text-xl">Pierre Falcke. Du ved formentligt ikke hvem han er. Men indtil for kort tid siden, så du hans værker et par gange om dagen, hver dag, året rundt. Pierre Falcke var en af verdens bedst sælgende stock-fotografer, og han solgte over 2 millioner fotos om året. Men Pierre kunne ikke drømme om at bruge sine egne fotos - faktisk kan han ikke fordrage sit eget arbejde.</p>
 			<div>
-				<a href="pierre.jpeg" class="lightbox">
-					<Image src={pierre} alt="" class="my-0"/>
-					<figcaption>Pierre Falcke, selvportræt</figcaption>
-				</a>
+				<audio x-ref="unlockbilledelyd">
+					<source src="unlock.mp3" type="audio/mpeg">
+				</audio>
+				<!-- sroll zoom animation -->
+				<section class="mx-auto max-w-4xl scrollzoom overflow-clip">
+					<a href="pierre.jpeg" class="lightbox">
+						<Image src={pierre} alt="" class="my-0 scrollzoomimg w-full"@click="$refs.unlockbilledelyd.play()" />
+						<figcaption>Pierre Falcke, selvportræt</figcaption>
+					</a>
+				  </section>  
+				
 			</div>
-			<p class="text-2xl italic text-center bg-black p-8 text-white">
-				Pierre sælger 2 millioner fotos om året
-			</p>
-			<p class="text-2xl italic text-center bg-black p-8 text-white">
-				Det svarer til én fotolicens hvert 16. sekund
-			</p>
-			<p class="text-2xl italic text-center  bg-black p-8 text-white">
-				Du ser hans fotos ca. 2 gange om dagen
-			</p>
+			<!-- stagger -->
+			<section class="staggeranimation">
+				<ul class="list-none"> 
+					<li><p class="text-2xl italic text-center font bg-amber-200 shadow-lg shadow-amber-300/50 p-8">Pierre sælger 2 millioner fotos om året</p></li>
+					<li><p class="text-2xl italic text-center font bg-amber-200 shadow-lg shadow-amber-300/50 p-8">Det svarer til én fotolicens hvert 16. sekund</p></li>
+					<li><p class="text-2xl italic text-center font  bg-amber-200 shadow-lg shadow-amber-300/50  p-8">Du ser hans fotos ca. 2 gange om dagen</p></li>
+				</ul>
+			</section>
 		</section>
-		<section class="max-w-4xl mx-auto my-32 prose border border-double border-black p-8" id="hvaderstockfotos">
-			<h2 class="text-2xl">Hvad er stock-fotos?</h2>
+		<div class="grid grid-cols-2"> 
+			<section id="crossfade" class="crossfadeimages mx-auto my-32 relative h-screen w-screen">
+			<Image src={pierre} alt="" class="crossfadetopimg topimg object-cover h-1/2 w-1/2 absolute top-1/4 z-0 mx-auto"/>
+			<Image src={glitch} alt="" class="crossfadebottomimg topimg object-cover h-1/2 w-1/2 absolute top-1/4 z-0 mx-auto"/>
+			</section>
+			<section id="crossfade" class="crossfadeimages mx-auto my-32 relative h-screen w-screen">
+			<Image src={glitch} alt="" class="crossfadetopimg topimg object-cover h-1/2 w-1/2 absolute top-1/4 z-0 mx-auto"/>
+			<Image src={pierre} alt="" class="crossfadebottomimg topimg object-cover h-1/2 w-1/2 absolute top-1/4 z-0 mx-auto"/>
+			</section>
+		</div>
+			
+		<section class="max-w-4xl mx-auto my-32 prose bg-amber-200 shadow-lg shadow-amber-300/50 p-8" id="hvaderstockfotos">
+			<h2 class="text-2xl font">Hvad er stock-fotos?</h2>
 			<div class="grid grid-cols-3 gap-4">
 				<div>
 					<p>Stock-fotos er billeder, der kan købes fra et foto-website. De bruges af aviser, til markedsføring og som indhold på websites. En licens til at bruge et foto koster typisk mellem 10 og 100 kroner, alt afhængig af hvad de skal bruges til.</p>
-					<Image src={arbejde} alt="" />
+					<Image src={arbejde}  alt="" />
 				</div>
 				<div>
 					<p>Stock-fotos bliver ofte kritiseret for at være uden sjæl - det er de der billeder af en læge i hvid kittel med stetoskop om halsen på en meget hvid baggrund eller en meget glad dame fra virksomhedens salgs- eller supportafdeling.</p>
@@ -59,7 +76,7 @@ import "../styles/tobii.min.css";
 			</div>
 		</section>
 		<section class="max-w-xl mx-auto mt-32 prose" id="pierresberoemmelse">
-			<h2 class="text-4xl">Pierres berømmelse</h2>
+			<h2 class="text-4xl font">Pierres berømmelse</h2>
 			<p>Pierres interesse for foto startede som ganske ung - som 10-årig fik han sin fars gamle Rollei-kamera, og begyndte at skyde løs. Det var før den digitale revolution, så alle Pierres lommepenge blev brugt på filmruller og fremkaldelse af film. Pierre fortsatte med at fotografere på film op gennem gymnasietiden.</p>
 			<p>Pierre over til digital fotografering i starten af 2000’erne, da han begyndte at studere fotografisk kommunikation på DMJX. Her åbnede en ny verden sig: Reklamefotografering i studie, lyssætning og manipulering af billeder i Photoshop blev hans nye stil. </p>
 			<p>På det tidspunkt var stock-foto industrien i starten af en revolution: De første online stock-foto websites begyndte at komme på markedet, men de store, etablerede spillere på markedet holdt lidt igen. Pierre så det for sig: “Om ganske få år er hele branchen digital, og dem der ikke hopper med på den digitale vogn, lukker.”</p>
@@ -67,22 +84,59 @@ import "../styles/tobii.min.css";
 			<p>Pierres profeti om stock-foto branchen holdt stik. Pierre var allerede en af landets bedst sælgende stock-fotografer, før han blev færdig med studiet på DMJX. 
 			</p>
 		</section>
+		<!--indsæt DR animation af billeder her for udstyr -->
+		<article class="sticky">
+			<div class="sticky top-1/4 mangeelementerinview grid grid-cols-5">
+			  <div class="p-2  bg-amber-200 shadow-lg shadow-amber-300/50 mangeelementer1">
+				<img class="w-[200px] h-[100px]" src="udstyr1.jpeg" alt="foto">
+			  </div>
+			  <div class="p-2  bg-amber-200 shadow-lg shadow-amber-300/50 mangeelementer2">
+				<img class="w-[200px] h-[100px]" src="udstyr2.jpg" alt="foto">
+			  </div>
+			  <div class="p-2  bg-amber-200 shadow-lg shadow-amber-300/50 mangeelementer3">
+				<img class="w-[200px] h-[100px]" src="udstyr3.jpg" alt="foto">
+			  </div>
+			  <div class="p-2  bg-amber-200 shadow-lg shadow-amber-300/50 mangeelementer4">
+				<img class="w-[200px] h-[100px]" src="udstyr4.jpeg" alt="foto">
+			  </div>
+			  <div class="p-2  bg-amber-200 shadow-lg shadow-amber-300/50 mangeelementer5">
+				<img class="w-[200px] h-[100px]" src="udstyr5.jpeg" alt="foto">
+			  </div>
+			  <div class="p-2  bg-amber-300 shadow-lg shadow-amber-300/50 mangeelementer6">
+				<img class="w-[200px] h-[100px]" src="udstyr6.jpeg" alt="foto">
+			  </div>
+			  <div class="p-2  bg-amber-300 shadow-lg shadow-amber-300/50 mangeelementer7">
+				<img class="w-[200px] h-[100px]" src="udstyr7.jpeg" alt="foto">
+			  </div>
+			  <div class="p-2  bg-amber-300 shadow-lg shadow-amber-300/50 mangeelementer8">
+				<img class="w-[200px] h-[100px]" src="udstyr8.jpeg" alt="foto">
+			  </div>
+			  <div class="p-2  bg-amber-300 shadow-lg shadow-amber-300/50 mangeelementer9">
+				<img class="w-[200px] h-[100px]" src="udstyr9.jpeg" alt="foto">
+			  </div>
+			  <div class="p-2 bg-amber-300 shadow-lg shadow-amber-300/50 mangeelementer10">
+				<img class="w-[200px] h-[100px]" src="udstyr10.jpeg" alt="foto">
+			  </div>
+			</div>
+			<div class="sticky top-0 h-screen">
+			</div>
+		  </article> 
 		<section id="enskillevej">
 			<div class="max-w-xl mx-auto mt-32 prose">
-				<h2 class="text-4xl">En skillevej</h2>
+				<h2 class="text-4xl font">En skillevej</h2>
 				<p>Pierre tjente godt det følgende årti. Men stille og roligt begyndte billederne også at give ham kvalme. Han kunne ikke holde sit eget arbejde ud, og måtte finde et modsvar til alle de blankpolerede fotos. Noget han kunne lave med stolthed. Pierre bestluttede sig for at droppe stock-fotos, og vende tilbage til rødderne.</p>
 				<p>Han søgte inspiration i analog fotografering, i Lomo-bevægelsen, Glitch art og polaroid fotografering, og begyndte stille og roligt at skabe sig en ny stil - en stil med fokus på det uperfekte, og hvor der er et uforudsigeligt element i det at tage billeder.</p>
 			</div>
 			<div class="grid grid-cols-2 gap-4 max-w-4xl mx-auto my-8 items-center prose">
 				<div>
 					<a href="glitch.jpg" class="lightbox">
-						<Image src={glitch} alt="" class="my-0" />
+						<Image src={glitch} alt="" class="my-0" @click="$refs.unlockbilledelyd.play()" />
 						<figcaption>Glitch kunst</figcaption>
 					</a>
 				</div>
 				<div>
 					<a href="lomo-smena-17.jpg" class="lightbox">
-						<Image src={smena} alt="" class="my-0" />
+						<Image src={smena} alt="" class="my-0" @click="$refs.unlockbilledelyd.play()"/>
 						<figcaption>Dobbelteksponering med Smena</figcaption>
 					</a>
 				</div>
@@ -91,41 +145,51 @@ import "../styles/tobii.min.css";
 				<p>Pierre tog det endda så vidt at han ikke kun droppede at tage stock-fotos. Han fjernede også alle stock-fotos fra de tjenester, han solgte sine fotos hos. Han gik fra at være en god forretningsdrivende til at blive en vaskeægte boheme-type på rekordtid.</p>
 			</div>
 		</section>
-		<section class="max-w-4xl mx-auto my-32 prose border border-double border-black p-8" id="fotoeksperimenter">
-			<h2 class="text-2xl">Fotoeksperimenter</h2>
+		<section class="max-w-4xl mx-auto my-32 prose bg-amber-200 shadow-lg shadow-amber-300/50 p-8" id="fotoeksperimenter">
+			<h2 class="text-2xl font">Fotoeksperimenter</h2>
 			<div class="grid grid-cols-3 gap-4">
 				<div>
-					<h3 class="text-xl">Analog fotografering</h3>
+					<h3 class="text-xl font">Analog fotografering</h3>
 					<p>Fotografering med gode, gammeldags filmruller. Analog fotografering stiger for tiden i popularitet, specielt blandt unge, og prisen på filmruller og vintage-kameraer skyder i vejret. Mange fotografer synes at film-fotografering er mere ægte har mere “sjæl.” Analog fotografering er langsommmere, hvert enkelt billede koster penge, og man bliver nødt til at overveje motiv og lys grundigere før der skydes - tænk før du trykker. </p>
 					<p>Analog fotografering kan gå galt mange steder i processen, og det giver også mulighed for at eksperimentere med “det uperfekte og uforudsigelige i processen.” Man kan f.eks. skyde på for gamle filmruller, arbejde med forskellige teknikker som “lens whacking” og filtre/ting foran objektivet, og man kan pille ved de kemiske processer under fremkaldelse af filmen.</p>
 				</div>
 				<div>
-					<h3 class="text-xl">Glitch art</h3>
+					<h3 class="text-xl font">Glitch art</h3>
 					<p>Når der sker en teknisk fejl i et medie/en kommunikationskanal kaldes det en glitch. Glitch art går ud på at dyrke fejlene for at skabe kunst. En meget typisk glitch er små analoge eller digitale fejl i farvegengivelsen af billeder.</p>
 					<p></p>
 				</div>
 				<div>
-					<h3 class="text-xl">Lomografi</h3>
+					<h3 class="text-xl font">Lomografi</h3>
 					<p>Et lomografi er egentlig bare et fotografi skudt uden videre omtanke, og med noget foto-udstyr af ret alternativ kvalitet. Lomografier skydes ofte på gode, gammeldags filmruller, men kan også skyde digitalt.</p>
 					<p>Det kan måske lyde lidt anti-fotograf-agtigt. Men en del foto-entusiaster dyrker den slags, og ser det som en foto-genre eller endda en livsstil.</p>
 				</div>
 			</div>
 		</section>
+		<!--indsæt horisont animation af billeder her for fotoeksperiment -->
+		<section id="horisontalscrollsection" class="h-[500vh] relative">
+			<ul id="horisontalliste" class="list-none flex sticky top-0">
+			<li class="flex h-[100vh] w-[100vw] items-start justify-center flex-col overflow-hidden flex-grow-0 flex-shrink-0 flex-auto"><img class="w-[600px] h-[800px]" src="sh.jpg" alt="foto"></li>
+			<li class="flex h-[100vh] w-[100vw] items-start justify-center flex-col overflow-hidden flex-grow-0 flex-shrink-0 flex-auto"><img class="w-[600px] h-[800px]" src="lomo.jpg" alt="foto"></li>
+			<li class="flex h-[100vh] w-[100vw] items-start justify-center flex-col overflow-hidden flex-grow-0 flex-shrink-0 flex-auto"><img class="w-[600px] h-[800px]" src="sh-skidt.jpg" alt="foto"></li>
+			<li class="flex h-[100vh] w-[100vw] items-start justify-center flex-col overflow-hidden flex-grow-0 flex-shrink-0 flex-auto"><img class="w-[600px] h-[800px]" src="lomo-smena.jpg" alt="foto"></li>
+			<li class="flex h-[100vh] w-[100vw] items-start justify-center flex-col overflow-hidden flex-grow-0 flex-shrink-0 flex-auto"><img class="w-[600px] h-[800px]" src="gammel-film.jpg" alt="foto"></li>
+			</ul>
+			</section>
 		<section id="nybegyndelse">
 			<div class="max-w-xl mx-auto my-32 prose">
-				<h2 class="text-4xl">En ny begyndelse</h2>
+				<h2 class="text-4xl font">En ny begyndelse</h2>
 				<p>Men Pierre er glad for sin beslutning. Indkomsten er lavere nu, men han har stadig lidt penge på kontoen, og studerer nu kunstfotografering på fotoskolen Fatamorgana. Han glæder sig over hver dags kunstneriske eksperimenter, og er for første gang i sit liv rigtig stolt af sit arbejde. Som Pierre selv udtrykker det: <span class="italic">“Det interessante ligger i fejlen. Et foto med masser af fejl er interessant. Jeg eksperimenterer med udstyr og teknik, og skaber nye visuelle udtryk. Det uperfekte er perfekt.”</span></p>
 			</div>
 			<div class="grid grid-cols-2 gap-4 max-w-4xl mx-auto my-8 items-center prose">
 				<div>
 					<a href="over-out-icm.jpeg" class="lightbox">
-						<Image src={overouticm} alt="" class="my-0" />
+						<Image src={overouticm} alt="" class="my-0" @click="$refs.unlockbilledelyd.play()" />
 						<figcaption>Overeksponeret og ude af fokus</figcaption>
 					</a>	
 				</div>
 				<div>
 					<a href="tynd-film.jpg" class="lightbox">
-						<Image src={tyndfilm} alt="" class="my-0" />
+						<Image src={tyndfilm} alt="" class="my-0" @click="$refs.unlockbilledelyd.play()" />
 						<figcaption>Overeksponeret og ude af fokus</figcaption>
 					</a>
 				</div>
@@ -134,16 +198,103 @@ import "../styles/tobii.min.css";
 				<p>Karrieren begynder også så småt også at gå den rette vej: Pierre er begyndt at sælge fotokunst på nettet, og har udgivet sin første foto-bog med titlen “Lidt i fem,” som er en fotografisk odyssé om at slæbe en brandert hjem i de tidlige morgentimer. I forbindelse med udgivelsen af bogen, har han en udstilling på vej i det Kongelige Biblioteks fotoudstilling.</p>
 				<p>Som Pierre forklarer det: <span class="italic">“Nu kan jeg leve livet igen. Jeg føler mig frisk. Jeg føler mig fri. Jeg føler mig genfødt.”</span></p>			
 				<div>
-					<a href="lidtifem-pierre-falcke.jpg" class="lightbox" alt="">
-						<Image src={lidtifem} alt="" class="my-0" />
+					<audio x-ref="unlockbilledelyd">
+						<source src="unlock.mp3" type="audio/mpeg">
+					</audio>
+					<a href="lidtifem-pierre-falcke.jpg" class="lightbox"
+					@click="$refs.unlockbilledelyd.play()">
+						<Image src={lidtifem} alt="" class="my-0 opacity-0 timelineanimation" alt="animeret foto" @click="$refs.unlockbilledelyd.play()"/>
 						<figcaption>Lidt i fem - ny bog af Pierre Falcke</figcaption>
 					</a>			
 				</div>
 			</div>
 		</section>
+		<section id="videografik" class="fixed bottom-2 right-2 spin-slow animate-[spin_3s_linear_infinite] duration-1000">
+		<video width="380" height="260" autoplay muted loop>
+			<source src="lille_film.webm" type="video/webm">
+		</video>
+		</section>
+		<div class="progress-bar h-4 fixed w-full bg-indigo-500 left-0 origin-top-left top-0 right-0"></div>
 	</article>
 </MainLayout>
 <script is:inline src="tobii.min.js"></script>
 <script defer>
 	const tobii = new Tobii(); 
 </script>
+
+<script>
+	//import motion one biblotek
+	import { animate, stagger, inView, scroll, timeline } from "motion";
+
+	//horisontal animation
+	const items = document.querySelectorAll("#horisontalliste li");
+scroll(
+   animate("#horisontalliste", {
+     transform: ["none", `translateX(-${items.length - 1}00vw)`]
+   }),
+   { target: document.querySelector("#horisontalscrollsection") }
+ ); 
+
+ //DR animation
+ inView( ".mangeelementerinview", () =>{
+    animate( ".mangeelementer1", { x: [-2000, 0 ] }, { duration: 2 }) 
+    animate( ".mangeelementer2", { x: [-1500, 0 ] }, { duration: 2 })
+    animate( ".mangeelementer3", { x: [-1000, 0 ] }, { duration: 2 })
+    animate( ".mangeelementer4", { x: [-500, 0 ] }, { duration: 2 })
+    animate( ".mangeelementer5", { x: [-2000, 0 ] }, { duration: 2 })
+    animate( ".mangeelementer6", { x: [2000, 0 ] }, { duration: 2 })
+    animate( ".mangeelementer7", { x: [1500, 0 ] }, { duration: 2 })
+    animate( ".mangeelementer8", { x: [1000, 0 ] }, { duration: 2 })
+    animate( ".mangeelementer9", { x: [500, 0 ] }, { duration: 2 })
+    animate( ".mangeelementer10", { x: [2000, 0 ] }, { duration: 2 })
+    return () => {
+      animate( ".mangeelementer1", { x: [-2000, 0 ] }, { duration: 2 }) 
+      animate( ".mangeelementer2", { x: [-1500, 0 ] }, { duration: 2 })
+      animate( ".mangeelementer3", { x: [-1000, 0 ] }, { duration: 2 })
+      animate( ".mangeelementer4", { x: [-500, 0 ] }, { duration: 2 })
+      animate( ".mangeelementer5", { x: [-2000, 0 ] }, { duration: 2 })
+      animate( ".mangeelementer6", { x: [2000, 0 ] }, { duration: 2 })
+      animate( ".mangeelementer7", { x: [1500, 0 ] }, { duration: 2 })
+      animate( ".mangeelementer8", { x: [1000, 0 ] }, { duration: 2 })
+      animate( ".mangeelementer9", { x: [500, 0 ] }, { duration: 2 })
+      animate( ".mangeelementer10", { x: [2000, 0 ] }, { duration: 2 })
+    }
+  })
+
+  //timeline animation
+  const timelineanimation = [
+  [".timelineanimation", { opacity: 1 }, { duration: 5 }],
+  [".timelineanimation", { transform: "rotate(360deg)" }, { duration: 3 }],
+  [".timelineanimation", { transform: "scale(1.5)" }, { duration: 0.5 }],
+  [".timelineanimation", { transform: "scale(1)" }, { duration: 1 }],
+]
+timeline( timelineanimation );
+
+//scroll-zoom
+scroll(
+        animate(".scrollzoomimg", { 
+          scale: [1, 1.5]    
+        }),
+        { 
+          target: document.querySelector(".scrollzoom"),
+          offset: ["0.5 0.5", "1 1"]
+       }
+      )
+
+// crossfade animation
+scroll(
+animate(".crossfadebottomimg", {opacity: [1,0]},), 
+{target: document.querySelector(".crossfadeimages"), offset: ["-25vh", "25vh"]}
+)
+
+//progessbar
+scroll( animate(".progress-bar", { scaleX: [0, 1] }));
+</script>
+
+<style>
+	.font {
+  	font-family: "Slackside One", cursive;
+  	font-weight: 400;
+  	font-style: normal;
+}
+</style>

@@ -6,27 +6,39 @@ import '../styles/global.css';
 import 'animate.css';
 const { title } = Astro.props;
 ---
-<html lang="en">
+<html lang="da">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Slackside+One&family=Yanone+Kaffeesatz:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
 		<meta name="generator" content={Astro.generator} />
 		<title>{Astro.props.title}</title>
 	</head>
-	<body>
+	<body class="bg-slate-50">
 
 		<header>
 			<Header></Header>
 		</header>
 		
-		<main>
+		<main class="container max-w-4xl mx-auto p-8 prose prose-xl overflow-clip">
 			<slot />
 		</main>
 
-		<footer class="bg-black">
+		<footer class="bg-indigo-500">
 			<Footer></Footer>
 		</footer>
 			
 	</body>
 </html>
+
+<!-- 
+	palette:
+	bg-slate-50 baggrund
+	bg-black andet
+	bg-amber-200 box section
+	bg-amber-300 box section shadow
+	bg-indigo-500 footer + andet
+-->
